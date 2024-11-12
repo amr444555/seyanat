@@ -32,6 +32,7 @@ page_js = {
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 doctype_js = {
+    "Security Access Log": "public/js/security_access_log.js",
     "Sales Invoice": "property_management_solution/sales_invoice.js",
     "Journal Entry Account": "property_management_solution/journal_entry_account.js",
     "Issue": "property_management_solution/issue.js",
