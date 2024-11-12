@@ -1,8 +1,5 @@
 <div align="center">
     <h2>Property Management Solution Powered on ERPNext</h2>
-
-[https:/aakvatech.com](https://aakvatech.com)
-
 </div>
 
 ## Property Management Solution
