@@ -622,14 +622,18 @@ def get_latest_active_lease(property_id):
     
 @frappe.whitelist()
 def after_install():
-    create_custom_fields({
-        "Sales Invoice": [
-            {
-                "fieldname": "property",
-                "label": "Property",
-                "fieldtype": "Link",
-                "options": "Property",
-                "insert_after": "customer",
-            }
-        ]
-    })
+    # Check if the Property DocType exists
+    if frappe.db.exists("DocType", "Property"):
+        create_custom_fields({
+            "Sales Invoice": [
+                {
+                    "fieldname": "property",
+                    "label": "Property",
+                    "fieldtype": "Link",
+                    "options": "Property",
+                    "insert_after": "customer",
+                }
+            ]
+        })
+    else:
+        frappe.throw("The Property DocType does not exist. Please ensure it is created before installing the app.")
