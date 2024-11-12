@@ -1,0 +1,51 @@
+{
+    "doctype": "DocType",
+    "name": "Security Access",
+    "module": "Property Management Solution",
+    "fields": [
+        {
+            "fieldname": "access_name",
+            "fieldtype": "Data",
+            "label": "Access Name",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "property",
+            "fieldtype": "Link",
+            "options": "Property",
+            "label": "Property",
+            "reqd": 1
+        },
+        {
+            "fieldname": "access_type",
+            "fieldtype": "Select",
+            "options": "Key\nCard\nBiometric\nOther",
+            "label": "Access Type",
+            "reqd": 1
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "options": "Active\nInactive\nMaintenance",
+            "label": "Status",
+            "reqd": 1,
+            "default": "Active"
+        },
+        {
+            "fieldname": "access_details",
+            "fieldtype": "Small Text",
+            "label": "Access Details"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ],
+    "track_changes": 1
+}

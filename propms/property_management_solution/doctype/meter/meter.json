@@ -1,0 +1,75 @@
+{
+    "doctype": "DocType",
+    "name": "Meter",
+    "module": "Property Management Solution",
+    "fields": [
+      {
+        "fieldname": "meter_number",
+        "fieldtype": "Data",
+        "label": "Meter Number",
+        "reqd": 1,
+        "unique": 1
+      },
+      {
+        "fieldname": "meter_phase",
+        "fieldtype": "Select",
+        "options": "Single Phase\nThree Phase",
+        "label": "Meter Phase",
+        "reqd": 1
+      },
+      {
+        "fieldname": "meter_model",
+        "fieldtype": "Link",
+        "options": "Meter Model",
+        "label": "Meter Model",
+        "reqd": 1
+      },
+      {
+        "fieldname": "bill_system",
+        "fieldtype": "Select",
+        "options": "Card\nBilled",
+        "label": "Bill System",
+        "reqd": 1
+      },
+      {
+        "fieldname": "meter_purpose",
+        "fieldtype": "Link",
+        "options": "Meter Purpose",
+        "label": "Meter Purpose",
+        "reqd": 1
+      },
+      {
+        "fieldname": "property",
+        "fieldtype": "Link",
+        "options": "Property",
+        "label": "Property",
+        "reqd": 1
+      },
+      {
+        "fieldname": "installation_date",
+        "fieldtype": "Date",
+        "label": "Installation Date"
+      },
+      {
+        "fieldname": "last_reading_date",
+        "fieldtype": "Date",
+        "label": "Last Reading Date",
+        "read_only": 1
+      },
+      {
+        "fieldname": "last_reading_value",
+        "fieldtype": "Float",
+        "label": "Last Reading Value",
+        "read_only": 1
+      }
+    ],
+    "permissions": [
+      {
+        "role": "System Manager",
+        "read": 1,
+        "write": 1,
+        "create": 1,
+        "delete": 1
+      }
+    ]
+  }

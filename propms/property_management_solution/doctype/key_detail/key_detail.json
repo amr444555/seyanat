@@ -1,0 +1,51 @@
+{
+    "doctype": "DocType",
+    "name": "Key Detail",
+    "istable": 1,
+    "fields": [
+        {
+            "fieldname": "key_number",
+            "fieldtype": "Data",
+            "label": "Key Number",
+            "reqd": 1
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "options": "Available\nOut\nLost",
+            "label": "Status",
+            "default": "Available"
+        },
+        {
+            "fieldname": "current_holder",
+            "fieldtype": "Dynamic Link",
+            "options": "holder_type",
+            "label": "Current Holder",
+            "depends_on": "eval:doc.status=='Out'"
+        },
+        {
+            "fieldname": "holder_type",
+            "fieldtype": "Select",
+            "options": "Customer\nEmployee\nOther\nContact\nCompany",
+            "label": "Holder Type",
+            "depends_on": "eval:doc.status=='Out'"
+        },
+        {
+            "fieldname": "owner",
+            "fieldtype": "Dynamic Link",
+            "options": "holder_type",
+            "label": "Owner"
+        },
+        {
+            "fieldname": "holder_contact",
+            "fieldtype": "Data",
+            "label": "Holder Contact",
+            "depends_on": "eval:doc.status=='Out' && doc.holder_type=='Other'"
+        },
+        {
+            "fieldname": "keeping_location",
+            "fieldtype": "Data",
+            "label": "Keeping Location"
+        }
+    ]
+}

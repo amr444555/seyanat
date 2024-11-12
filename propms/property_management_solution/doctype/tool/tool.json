@@ -1,0 +1,78 @@
+{
+    "doctype": "DocType",
+    "name": "Tool",
+    "module": "Property Management Solution",
+    "fields": [
+        {
+            "fieldname": "tool_name",
+            "fieldtype": "Data",
+            "label": "Tool Name",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "item",
+            "fieldtype": "Link",
+            "options": "Item",
+            "label": "Item",
+            "reqd": 1,
+            "get_query": {
+                "filters": {
+                    "is_tool": 1
+                }
+            }
+        },
+        {
+            "fieldname": "purchase_receipt",
+            "fieldtype": "Link",
+            "options": "Purchase Receipt",
+            "label": "Purchase Receipt",
+            "reqd": 1
+        },
+        {
+            "fieldname": "available_tools",
+            "fieldtype": "Int",
+            "label": "Available Tools",
+            "read_only": 1
+        },
+        {
+            "fieldname": "in_use_tools",
+            "fieldtype": "Int",
+            "label": "In Use Tools",
+            "read_only": 1
+        },
+        {
+            "fieldname": "under_maintenance_tools",
+            "fieldtype": "Int",
+            "label": "Under Maintenance Tools",
+            "read_only": 1
+        },
+        {
+            "fieldname": "out_of_service_tools",
+            "fieldtype": "Int",
+            "label": "Out of Service Tools",
+            "read_only": 1
+        },
+        {
+            "fieldname": "tool_details",
+            "fieldtype": "Table",
+            "options": "Tool Detail",
+            "label": "Tool Details"
+        },
+        {
+            "fieldname": "key_tool_records",
+            "fieldtype": "Table",
+            "options": "Key Tool Record",
+            "label": "Key Tool Records"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ]
+}

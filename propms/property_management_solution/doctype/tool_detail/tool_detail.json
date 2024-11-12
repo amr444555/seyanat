@@ -1,0 +1,45 @@
+{
+    "doctype": "DocType",
+    "name": "Tool Detail",
+    "istable": 1,
+    "fields": [
+        {
+            "fieldname": "tool_number",
+            "fieldtype": "Data",
+            "label": "Tool Number",
+            "reqd": 1
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "options": "Available\nIn Use\nUnder Maintenance\nOut of Service",
+            "label": "Status",
+            "default": "Available"
+        },
+        {
+            "fieldname": "current_holder",
+            "fieldtype": "Dynamic Link",
+            "options": "holder_type",
+            "label": "Current Holder",
+            "depends_on": "eval:doc.status=='In Use'"
+        },
+        {
+            "fieldname": "holder_type",
+            "fieldtype": "Select",
+            "options": "Employee\nOther",
+            "label": "Holder Type",
+            "depends_on": "eval:doc.status=='In Use'"
+        },
+        {
+            "fieldname": "holder_contact",
+            "fieldtype": "Data",
+            "label": "Holder Contact",
+            "depends_on": "eval:doc.status=='In Use' && doc.holder_type=='Other'"
+        },
+        {
+            "fieldname": "keeping_location",
+            "fieldtype": "Data",
+            "label": "Keeping Location"
+        }
+    ]
+}

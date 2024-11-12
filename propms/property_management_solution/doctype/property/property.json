@@ -1,0 +1,273 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:property_name",
+  "creation": "2023-05-01 00:00:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "property_details_section",
+    "property_name",
+    "property_type",
+    "property_number",
+    "is_property",
+    "address",
+    "column_break_1",
+    "status",
+    "owner",
+    "cost_center",
+    "image",
+    "property_specific_details_section",
+    "area",
+    "rent",
+    "units_chart_section",
+    "units_chart_html",
+    "property_structure_section",
+    "total_floors",
+    "units_per_floor",
+    "total_units",
+    "column_break_2",
+    "create_floors_and_units",
+    "change_owner",
+    "change_tenant",
+    "section_break_1",
+    "amenities",
+    "section_break_2",
+    "floors",
+    "section_break_3",
+    "ownership_history",
+    "section_break_4",
+    "rent_history",
+    "linked_documents_section",
+    "sales_invoices",
+    "issues",
+    "tasks"
+  ],
+  "fields": [
+    {
+      "fieldname": "property_details_section",
+      "fieldtype": "Section Break",
+      "label": "Property Details"
+    },
+    {
+      "fieldname": "property_name",
+      "fieldtype": "Data",
+      "label": "Property Name",
+      "unique": 1,
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "property_type",
+      "fieldtype": "Link",
+      "label": "Property Type",
+      "options": "Property Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "property_number",
+      "fieldtype": "Data",
+      "label": "Property Number",
+      "reqd": 1
+    },
+    {
+      "default": "0",
+      "fieldname": "is_property",
+      "fieldtype": "Check",
+      "label": "Is Property (Contains Units)"
+    },
+    {
+      "fieldname": "address",
+      "fieldtype": "Link",
+      "label": "Address",
+      "options": "Address"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Available\nRented\nUnder-Maintenance\nUnder-Construction\nSold\nLeased\nAvailable-For-Rent",
+      "reqd": 1
+    },
+    {
+      "fieldname": "owner",
+      "fieldtype": "Link",
+      "label": "Owner",
+      "options": "Customer"
+    },
+    {
+      "fieldname": "cost_center",
+      "fieldtype": "Link",
+      "label": "Cost Center",
+      "options": "Cost Center"
+    },
+    {
+      "fieldname": "image",
+      "fieldtype": "Attach Image",
+      "label": "Property Image"
+    },
+    {
+      "fieldname": "property_specific_details_section",
+      "fieldtype": "Section Break",
+      "label": "Property Specific Details"
+    },
+    {
+      "fieldname": "area",
+      "fieldtype": "Float",
+      "label": "Area (sq ft)",
+      "depends_on": "eval:doc.is_property == 0"
+    },
+    {
+      "fieldname": "rent",
+      "fieldtype": "Currency",
+      "label": "Rent",
+      "depends_on": "eval:doc.is_property == 1"
+    },
+    {
+      "fieldname": "units_chart_section",
+      "fieldtype": "Section Break",
+      "label": "Units Chart"
+    },
+    {
+      "fieldname": "units_chart_html",
+      "fieldtype": "HTML",
+      "label": "Units Chart"
+    },
+    {
+      "fieldname": "property_structure_section",
+      "fieldtype": "Section Break",
+      "label": "Property Structure"
+    },
+    {
+      "fieldname": "total_floors",
+      "fieldtype": "Int",
+      "label": "Total Floors"
+    },
+    {
+      "fieldname": "units_per_floor",
+      "fieldtype": "Int",
+      "label": "Units per Floor"
+    },
+    {
+      "fieldname": "total_units",
+      "fieldtype": "Int",
+      "label": "Total Units",
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "create_floors_and_units",
+      "fieldtype": "Button",
+      "label": "Create Floors and Units"
+    },
+    {
+      "fieldname": "change_owner",
+      "fieldtype": "Button",
+      "label": "Change Owner"
+    },
+    {
+      "fieldname": "change_tenant",
+      "fieldtype": "Button",
+      "label": "Change Tenant"
+    },
+    {
+      "fieldname": "section_break_1",
+      "fieldtype": "Section Break",
+      "label": "Amenities"
+    },
+    {
+      "fieldname": "amenities",
+      "fieldtype": "Table",
+      "label": "Amenities",
+      "options": "Property Amenity"
+    },
+    {
+      "fieldname": "section_break_2",
+      "fieldtype": "Section Break",
+      "label": "Floors and Units"
+    },
+    {
+      "fieldname": "floors",
+      "fieldtype": "Table",
+      "label": "Floors",
+      "options": "Property Floor"
+    },
+    {
+      "fieldname": "section_break_3",
+      "fieldtype": "Section Break",
+      "label": "Ownership History"
+    },
+    {
+      "fieldname": "ownership_history",
+      "fieldtype": "Table",
+      "label": "Ownership History",
+      "options": "Property Ownership History"
+    },
+    {
+      "fieldname": "section_break_4",
+      "fieldtype": "Section Break",
+      "label": "Rent History"
+    },
+    {
+      "fieldname": "rent_history",
+      "fieldtype": "Table",
+      "label": "Rent History",
+      "options": "Property Rent History"
+    },
+    {
+      "fieldname": "linked_documents_section",
+      "fieldtype": "Section Break",
+      "label": "Linked Documents"
+    },
+    {
+      "fieldname": "sales_invoices",
+      "fieldtype": "Table",
+      "label": "Sales Invoices",
+      "options": "Property Sales Invoice"
+    },
+    {
+      "fieldname": "issues",
+      "fieldtype": "Table",
+      "label": "Issues",
+      "options": "Property Issue"
+    },
+    {
+      "fieldname": "tasks",
+      "fieldtype": "Table",
+      "label": "Tasks",
+      "options": "Property Task"
+    }
+  ],
+  "links": [],
+  "modified": "2023-05-01 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Property Management Solution",
+  "name": "Property",
+  "name_case": "Title Case",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

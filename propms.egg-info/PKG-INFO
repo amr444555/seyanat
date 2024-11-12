@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: propms
+Version: 2.0.0
+Summary: Property Management Solution
+Author: amr444555
+Author-email: amr444555@gmail.com
+License-File: LICENSE
+Requires-Dist: frappe
+Requires-Dist: erpnext

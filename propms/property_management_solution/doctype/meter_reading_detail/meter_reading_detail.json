@@ -1,0 +1,39 @@
+{
+  "doctype": "DocType",
+  "name": "Meter Reading Detail",
+  "module": "Property Management Solution",
+  "istable": 1,
+  "fields": [
+    {
+      "fieldname": "previous_reading_date",
+      "fieldtype": "Date",
+      "label": "Previous Reading Date",
+      "read_only": 1
+    },
+    {
+      "fieldname": "previous_reading_value",
+      "fieldtype": "Float",
+      "label": "Previous Reading Value",
+      "read_only": 1
+    },
+    {
+      "fieldname": "consumption",
+      "fieldtype": "Float",
+      "label": "Consumption",
+      "read_only": 1
+    },
+    {
+      "fieldname": "days_between_readings",
+      "fieldtype": "Int",
+      "label": "Days Between Readings",
+      "read_only": 1
+    },
+    {
+      "fieldname": "average_monthly_consumption",
+      "fieldtype": "Float",
+      "label": "Average Monthly Consumption",
+      "read_only": 1
+    }
+  ],
+  "permissions": []
+}
