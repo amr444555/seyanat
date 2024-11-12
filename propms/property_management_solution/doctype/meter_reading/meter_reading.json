@@ -1,138 +1,59 @@
-import frappe
-from frappe.model.document import Document
-from datetime import datetime
-from frappe.utils import add_days, get_taxes_and_charges
-
-class MeterReading(Document):
-    def validate(self):
-        self.calculate_consumption()
-        self.update_meter()
-
-    def calculate_consumption(self):
-        last_reading = frappe.get_all(
-            "Meter Reading",
-            filters={"meter": self.meter, "reading_date": ("<", self.reading_date)},
-            fields=["reading_value", "reading_date"],
-            order_by="reading_date desc",
-            limit=1
-        )
-
-        if last_reading:
-            last_reading = last_reading[0]
-            self.consumption = self.reading_value - last_reading.reading_value
-            days_between = (datetime.strptime(str(self.reading_date), "%Y-%m-%d") - 
-                            datetime.strptime(str(last_reading.reading_date), "%Y-%m-%d")).days
-            self.days_since_last_reading = days_between
-            self.average_monthly_consumption = (self.consumption / days_between) * 30 if days_between > 0 else 0
-
-            self.append("reading_details", {
-                "previous_reading_date": last_reading.reading_date,
-                "previous_reading_value": last_reading.reading_value,
-                "consumption": self.consumption,
-                "days_between_readings": days_between,
-                "average_monthly_consumption": self.average_monthly_consumption
-            })
-        else:
-            self.consumption = 0
-            self.days_since_last_reading = 0
-            self.average_monthly_consumption = 0
-
-    def update_meter(self):
-        frappe.db.set_value("Meter", self.meter, {
-            "last_reading_date": self.reading_date,
-            "last_reading_value": self.reading_value
-        })
-
-    @frappe.whitelist()
-    def make_invoice_meter_reading(self):
-        meter_doc = frappe.get_doc("Meter", self.meter)
-        property_doc = frappe.get_doc("Property", meter_doc.property)
-        
-        item_detail = self.get_item_details()
-        lease = frappe.get_doc("Lease", self.get_latest_active_lease(property_doc.name))
-        customer = lease.customer
-
-        if customer:
-            invoice_number = self.make_invoice(
-                self.reading_date,
-                customer,
-                property_doc.name,
-                item_detail,
-                meter_doc.meter_purpose,
-                self.reading_details[0].previous_reading_date if self.reading_details else None,
-                self.reading_date
-            )
-            return invoice_number
-        else:
-            frappe.throw("No active lease found for the property.")
-
-    def get_item_details(self):
-        return get_item_details(
-            self.meter.meter_purpose,
-            self.consumption,
-            self.reading_details[0].previous_reading_date if self.reading_details else None,
-            self.reading_date
-        )
-
-    def get_latest_active_lease(self, property_id):
-        leases = frappe.get_all(
-            "Lease",
-            filters={
-                "property": property_id,
-                "docstatus": 1,
-                "status": "Active"
-            },
-            order_by="start_date desc",
-            limit=1
-        )
-        return leases[0].name if leases else None
-
-    def make_invoice(self, meter_date, customer, property_id, items, lease_item, from_date, to_date):
-        company = frappe.db.get_value("Property", property_id, "company")
-        try:
-            sales_invoice = frappe.get_doc(
-                dict(
-                    doctype="Sales Invoice",
-                    company=company,
-                    posting_date=meter_date,
-                    items=items,
-                    lease=self.get_latest_active_lease(property_id),
-                    lease_item=lease_item,
-                    customer=str(customer),
-                    due_date=self.get_due_date(meter_date, str(customer)),
-                    taxes_and_charges=frappe.get_value(
-                        "Company", company, "default_tax_template"
-                    ),
-                    cost_center=self.get_cost_center(property_id),
-                    from_date=from_date,
-                    to_date=to_date,
-                )
-            ).insert()
-            if sales_invoice.taxes_and_charges:
-                get_tax(sales_invoice)
-            sales_invoice.calculate_taxes_and_totals()
-            sales_invoice.save()
-            return sales_invoice.name
-        except Exception as e:
-            frappe.log_error(frappe.get_traceback(), f"Error creating invoice for Meter Reading {self.name}")
-            frappe.throw(f"Error creating invoice: {str(e)}")
-
-    def get_due_date(self, meter_date, customer):
-        return add_days(meter_date, 2)  # Default to 2 days, adjust as needed
-
-    def get_cost_center(self, property_id):
-        return frappe.db.get_value("Property", property_id, "cost_center")
-
-@frappe.whitelist()
-def get_item_details(meter_type, reading_difference, from_date, to_date):
-    # Implement the logic from auto_custom.py
-    startLine: 523
-    endLine: 528
-
-@frappe.whitelist()
-def get_tax(sales_invoice):
-    taxes = get_taxes_and_charges(
-        "Sales Taxes and Charges Template", sales_invoice.taxes_and_charges
-    )
-    for tax in taxes:
-        sales_invoice.append("taxes", tax)
+{
+    "doctype": "DocType",
+    "name": "Meter Reading",
+    "module": "Property Management Solution",
+    "fields": [
+        {
+            "fieldname": "meter",
+            "fieldtype": "Link",
+            "options": "Meter",
+            "label": "Meter",
+            "reqd": 1
+        },
+        {
+            "fieldname": "reading_value",
+            "fieldtype": "Float",
+            "label": "Reading Value",
+            "reqd": 1
+        },
+        {
+            "fieldname": "reading_date",
+            "fieldtype": "Date",
+            "label": "Reading Date",
+            "reqd": 1
+        },
+        {
+            "fieldname": "consumption",
+            "fieldtype": "Float",
+            "label": "Consumption",
+            "read_only": 1
+        },
+        {
+            "fieldname": "days_since_last_reading",
+            "fieldtype": "Int",
+            "label": "Days Since Last Reading",
+            "read_only": 1
+        },
+        {
+            "fieldname": "average_monthly_consumption",
+            "fieldtype": "Float",
+            "label": "Average Monthly Consumption",
+            "read_only": 1
+        },
+        {
+            "fieldname": "reading_details",
+            "fieldtype": "Table",
+            "options": "Meter Reading Detail",
+            "label": "Reading Details"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ]
+}
