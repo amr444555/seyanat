@@ -1,0 +1,66 @@
+{
+    "creation": "2023-05-01 00:00:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+      "property",
+      "floor_number",
+      "max_units",
+      "units"
+    ],
+    "fields": [
+      {
+        "fieldname": "property",
+        "fieldtype": "Link",
+        "label": "Property",
+        "options": "Property",
+        "reqd": 1,
+        "get_query": {
+          "filters": {
+            "is_property": 1
+          }
+        }
+      },
+      {
+        "fieldname": "floor_number",
+        "fieldtype": "Int",
+        "label": "Floor Number",
+        "reqd": 1
+      },
+      {
+        "fieldname": "max_units",
+        "fieldtype": "Int",
+        "label": "Maximum Units",
+        "reqd": 1
+      },
+      {
+        "fieldname": "units",
+        "fieldtype": "Table",
+        "label": "Units",
+        "options": "Property Unit"
+      }
+    ],
+    "modified": "2023-05-01 00:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Property Management Solution",
+    "name": "Property Floor",
+    "owner": "Administrator",
+    "permissions": [
+      {
+        "create": 1,
+        "delete": 1,
+        "email": 1,
+        "export": 1,
+        "print": 1,
+        "read": 1,
+        "report": 1,
+        "role": "System Manager",
+        "share": 1,
+        "write": 1
+      }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "track_changes": 1
+  }

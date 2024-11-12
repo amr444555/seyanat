@@ -1,0 +1,34 @@
+{
+  "doctype": "DocType",
+  "module": "Property Management Solution",
+  "name": "Property Ownership History",
+  "owner": "Administrator",
+  "fields": [
+    {
+      "fieldname": "from_date",
+      "fieldtype": "Date",
+      "label": "From Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "to_date",
+      "fieldtype": "Date",
+      "label": "To Date"
+    },
+    {
+      "fieldname": "owner",
+      "fieldtype": "Link",
+      "label": "Owner",
+      "options": "Customer",
+      "reqd": 1
+    },
+    {
+      "fieldname": "previous_owner",
+      "fieldtype": "Link",
+      "label": "Previous Owner",
+      "options": "Customer"
+    }
+  ],
+  "istable": 1,
+  "permissions": []
+}

@@ -1,0 +1,92 @@
+{
+    "doctype": "DocType",
+    "name": "Key Tool Record",
+    "module": "Property Management Solution",
+    "fields": [
+        {
+            "fieldname": "key",
+            "fieldtype": "Link",
+            "options": "Key",
+            "label": "Key"
+        },
+        {
+            "fieldname": "tool",
+            "fieldtype": "Link",
+            "options": "Tool",
+            "label": "Tool"
+        },
+        {
+            "fieldname": "item",
+            "fieldtype": "Link",
+            "options": "Item",
+            "label": "Item",
+            "read_only": 1
+        },
+        {
+            "fieldname": "property",
+            "fieldtype": "Link",
+            "options": "Property",
+            "label": "Property",
+            "read_only": 1
+        },
+        {
+            "fieldname": "key_number",
+            "fieldtype": "Data",
+            "label": "Key/Tool Number",
+            "reqd": 1
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "options": "Available\nOut\nLost\nIn Use\nUnder Maintenance\nOut of Service",
+            "label": "Status",
+            "reqd": 1
+        },
+        {
+            "fieldname": "current_holder",
+            "fieldtype": "Dynamic Link",
+            "options": "holder_type",
+            "label": "Current Holder",
+            "depends_on": "eval:doc.status=='Out' || doc.status=='In Use'"
+        },
+        {
+            "fieldname": "holder_type",
+            "fieldtype": "Select",
+            "options": "Customer\nEmployee\nOther\nContact\nCompany",
+            "label": "Holder Type",
+            "depends_on": "eval:doc.status=='Out' || doc.status=='In Use'"
+        },
+        {
+            "fieldname": "holder_contact",
+            "fieldtype": "Data",
+            "label": "Holder Contact",
+            "depends_on": "eval:(doc.status=='Out' || doc.status=='In Use') && doc.holder_type=='Other'"
+        },
+        {
+            "fieldname": "keeping_location",
+            "fieldtype": "Data",
+            "label": "Keeping Location"
+        },
+        {
+            "fieldname": "date",
+            "fieldtype": "Datetime",
+            "label": "Date",
+            "reqd": 1,
+            "default": "now"
+        },
+        {
+            "fieldname": "remarks",
+            "fieldtype": "Small Text",
+            "label": "Remarks"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ]
+}

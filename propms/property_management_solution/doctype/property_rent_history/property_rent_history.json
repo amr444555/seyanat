@@ -1,0 +1,63 @@
+{
+    "creation": "2023-05-01 00:00:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+      "property",
+      "from_date",
+      "to_date",
+      "tenant",
+      "previous_tenant",
+      "lease"
+    ],
+    "fields": [
+      {
+        "fieldname": "property",
+        "fieldtype": "Link",
+        "label": "Property",
+        "options": "Property",
+        "reqd": 1
+      },
+      {
+        "fieldname": "from_date",
+        "fieldtype": "Date",
+        "label": "From Date",
+        "reqd": 1
+      },
+      {
+        "fieldname": "to_date",
+        "fieldtype": "Date",
+        "label": "To Date"
+      },
+      {
+        "fieldname": "tenant",
+        "fieldtype": "Link",
+        "label": "Tenant",
+        "options": "Customer",
+        "reqd": 1
+      },
+      {
+        "fieldname": "previous_tenant",
+        "fieldtype": "Link",
+        "label": "Previous Tenant",
+        "options": "Customer"
+      },
+      {
+        "fieldname": "lease",
+        "fieldtype": "Link",
+        "label": "Lease",
+        "options": "Lease"
+      }
+    ],
+    "istable": 1,
+    "modified": "2023-05-01 00:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Property Management Solution",
+    "name": "Property Rent History",
+    "owner": "Administrator",
+    "permissions": [],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "track_changes": 1
+  }
