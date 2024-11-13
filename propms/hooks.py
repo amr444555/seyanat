@@ -4,7 +4,7 @@ from . import __version__ as app_version
 
 app_name = "propms"
 app_title = "Property Management Solution"
-app_publisher = "Seyanat"
+app_publisher = "seyanat"
 app_description = "Property Management Solution"
 app_icon = "octicon octicon-home"
 app_color = "grey"
@@ -32,7 +32,6 @@ page_js = {
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 doctype_js = {
-    "Security Access Log": "public/js/security_access_log.js",
     "Sales Invoice": "property_management_solution/sales_invoice.js",
     "Journal Entry Account": "property_management_solution/journal_entry_account.js",
     "Issue": "property_management_solution/issue.js",
@@ -263,3 +262,83 @@ scheduler_events = {
 #   "property_management_solution.property_management_solution.doctype.security_access.security_access.generate_qr_code": "propms.property_management_solution.doctype.security_access.security_access.generate_qr_code"
 # }
 after_install = "propms.auto_custom.after_install"
+
+# Define the workspace for the app
+workspaces = [
+    {
+        "label": "Property Management",
+        "icon": "fa fa-cog",
+        "items": [
+            {
+                "type": "doctype",
+                "name": "Property",
+                "description": _("Property database."),
+            },
+            {
+                "type": "doctype",
+                "name": "Unit Type",
+                "description": _("Unit Type definition."),
+            },
+            {
+                "type": "doctype",
+                "name": "Key",
+                "description": _("Key sets in custody."),
+            },
+            {
+                "type": "doctype",
+                "name": "Checklist Checkup Area",
+                "description": _("Areas for Checklist Checkup."),
+            },
+            {
+                "type": "doctype",
+                "name": "Guard Shift",
+                "description": _("Shift for security guards."),
+            },
+            {
+                "type": "doctype",
+                "name": "Key Set",
+                "description": _("Key sets in custody."),
+            },
+            {
+                "type": "doctype",
+                "name": "Tool Item Set",
+                "description": _("Tool Item Sets in custody."),
+            },
+            {
+                "type": "doctype",
+                "name": "Outsourcing Category",
+                "description": _("Outsourcing Category definition."),
+            },
+            {
+                "type": "doctype",
+                "name": "Property Amenity",
+                "description": _("Property Amenity definition."),
+            },
+            {
+                "type": "doctype",
+                "name": "Insurance",
+                "description": _("Insurance."),
+            },
+            {
+                "type": "doctype",
+                "name": "Outsourcing Attendance",
+                "description": _("Outsourcing Attendance."),
+            },
+            {
+                "type": "doctype",
+                "name": "Outsourcing Shift",
+                "description": _("Outsourcing Shift."),
+            },
+            {
+                "type": "doctype",
+                "name": "Outsourcing Shift Location",
+                "description": _("Outsourcing Shift Location."),
+            },
+            {
+                "type": "doctype",
+                "name": "Paint",
+                "description": _("Paint."),
+            },
+        ]
+    }
+]
