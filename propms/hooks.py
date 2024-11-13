@@ -8,7 +8,7 @@ app_publisher = "Aakvatech"
 app_description = "Property Management Solution"
 app_icon = "octicon octicon-home"
 app_color = "grey"
-app_email = "info@aakvatech.com"
+app_email = "amr444555@gmail.com"
 app_license = "MIT"
 
 # Includes in <head>
