@@ -4,8 +4,6 @@
   "autoname": "field:property_name",
   "creation": "2023-05-01 00:00:00.000000",
   "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
   "field_order": [
     "property_details_section",
     "property_name",
