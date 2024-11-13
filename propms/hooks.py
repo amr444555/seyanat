@@ -4,7 +4,7 @@ from . import __version__ as app_version
 
 app_name = "propms"
 app_title = "Property Management Solution"
-app_publisher = "Aakvatech"
+app_publisher = "Seyanat"
 app_description = "Property Management Solution"
 app_icon = "octicon octicon-home"
 app_color = "grey"
