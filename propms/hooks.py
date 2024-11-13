@@ -287,11 +287,6 @@ workspaces = [
             },
             {
                 "type": "doctype",
-                "name": "Key Details",
-                "description": _("Key Details."),
-            },
-            {
-                "type": "doctype",
                 "name": "Meter",
                 "description": _("Meter."),
             },
@@ -312,43 +307,8 @@ workspaces = [
             },
             {
                 "type": "doctype",
-                "name": "Meter Reading Detail",
-                "description": _("Meter Reading Detail."),
-            },
-            {
-                "type": "doctype",
                 "name": "Property",
                 "description": _("Property."),
-            },
-            {
-                "type": "doctype",
-                "name": "Property Amenity",
-                "description": _("Property Amenity."),
-            },
-            {
-                "type": "doctype",
-                "name": "Property Floor",
-                "description": _("Property Floor."),
-            },
-            {
-                "type": "doctype",
-                "name": "Property Ownership History",
-                "description": _("Property Ownership History."),
-            },
-            {
-                "type": "doctype",
-                "name": "Property Rent History",
-                "description": _("Property Rent History."),
-            },
-            {
-                "type": "doctype",
-                "name": "Property Type",
-                "description": _("Property Type."),
-            },
-            {
-                "type": "doctype",
-                "name": "Property Unit",
-                "description": _("Property Unit."),
             },
             {
                 "type": "doctype",
