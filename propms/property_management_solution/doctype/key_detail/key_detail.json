@@ -1,6 +1,7 @@
 {
     "doctype": "DocType",
     "name": "Key Detail",
+    "module": "Property Management Solution",  
     "istable": 1,
     "fields": [
         {
